@@ -16,6 +16,7 @@ public class Event {
     private LocalDateTime date;
 
     @JsonProperty(value = "Event")
+    @Column(length = 1000)
     private String event;
 
     @JsonProperty(value = "UserName")
@@ -28,16 +29,18 @@ public class Event {
     private String transactionStatus;
 
     @JsonProperty(value = "Metadata")
+    @Column(length = 1000)
     private String metadata;
 
     @JsonProperty(value = "Comment")
-    @Column(length = 1000)
+    @Column(length = 4000)
     private String comment;
 
     @JsonProperty(value = "Data")
     private String data;
 
     @JsonProperty(value = "MetadataPresentation")
+    @Column(length = 1000)
     private String metadataPresentation;
 
     @JsonProperty(value = "Session")
