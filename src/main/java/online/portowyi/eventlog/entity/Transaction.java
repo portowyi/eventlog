@@ -14,6 +14,7 @@ public class Transaction {
     private LocalDateTime transactionOpenDate;
     private LocalDateTime transactionCommitDate;
     private LocalDateTime transactionRollbackDate;
+    private Long transactionDuration;
 
     @Override
     public int hashCode() {
@@ -58,5 +59,13 @@ public class Transaction {
 
     public void setTransactionRollbackDate(LocalDateTime transactionRollbackDate) {
         this.transactionRollbackDate = transactionRollbackDate;
+    }
+
+    public Long getTransactionDuration() {
+        return transactionDuration;
+    }
+
+    public void setTransactionDuration(Long transactionDuration) {
+        this.transactionDuration = transactionDuration;
     }
 }

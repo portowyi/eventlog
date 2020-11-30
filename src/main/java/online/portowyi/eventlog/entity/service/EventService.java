@@ -6,6 +6,8 @@ import online.portowyi.eventlog.entity.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +59,14 @@ public class EventService {
                 if (ev_description.equals(TRANSACTION_ROLLBACK)) {
                     transaction.setTransactionFinished(true);
                     transaction.setTransactionRollbackDate(event.getDate());
+                }
+                if (transaction.getTransactionOpenDate() != null && transaction.getTransactionCommitDate() != null){
+                    Long seconds = Duration.between(transaction.getTransactionOpenDate(), transaction.getTransactionCommitDate()).getSeconds();
+                    transaction.setTransactionDuration(seconds);
+                }
+                if (transaction.getTransactionOpenDate() != null && transaction.getTransactionRollbackDate() != null){
+                    Long seconds = Duration.between(transaction.getTransactionOpenDate(), transaction.getTransactionRollbackDate()).getSeconds();
+                    transaction.setTransactionDuration(seconds);
                 }
                 transactionsMap.put(hash, transaction);
             }
