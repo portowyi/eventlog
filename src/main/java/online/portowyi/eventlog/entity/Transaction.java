@@ -1,23 +1,24 @@
 package online.portowyi.eventlog.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Transaction {
 
     @Id
     private String transactionID;
-    private boolean transactionCommit;
+    private boolean transactionFinished;
     private LocalDateTime transactionOpenDate;
     private LocalDateTime transactionCommitDate;
+    private LocalDateTime transactionRollbackDate;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transactionID);
+    }
 
     public String getTransactionID() {
         return transactionID;
@@ -27,12 +28,12 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public boolean isTransactionCommit() {
-        return transactionCommit;
+    public boolean isTransactionFinished() {
+        return transactionFinished;
     }
 
-    public void setTransactionCommit(boolean transactionCommit) {
-        this.transactionCommit = transactionCommit;
+    public void setTransactionFinished(boolean transactionCommit) {
+        this.transactionFinished = transactionCommit;
     }
 
     public LocalDateTime getTransactionOpenDate() {
@@ -49,5 +50,13 @@ public class Transaction {
 
     public void setTransactionCommitDate(LocalDateTime transactionCommitDate) {
         this.transactionCommitDate = transactionCommitDate;
+    }
+
+    public LocalDateTime getTransactionRollbackDate() {
+        return transactionRollbackDate;
+    }
+
+    public void setTransactionRollbackDate(LocalDateTime transactionRollbackDate) {
+        this.transactionRollbackDate = transactionRollbackDate;
     }
 }
