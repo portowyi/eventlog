@@ -1,4 +1,4 @@
-package online.portowyi.eventlog.demo;
+package online.portowyi.eventlog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

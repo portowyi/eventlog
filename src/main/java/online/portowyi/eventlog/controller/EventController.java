@@ -1,7 +1,7 @@
-package online.portowyi.eventlog.demo.controller;
+package online.portowyi.eventlog.controller;
 
-import online.portowyi.eventlog.demo.entity.Event;
-import online.portowyi.eventlog.demo.entity.service.EventService;
+import online.portowyi.eventlog.entity.Event;
+import online.portowyi.eventlog.entity.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

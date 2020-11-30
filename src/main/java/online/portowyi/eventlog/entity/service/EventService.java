@@ -1,8 +1,8 @@
-package online.portowyi.eventlog.demo.entity.service;
+package online.portowyi.eventlog.entity.service;
 
-import online.portowyi.eventlog.demo.entity.Event;
-import online.portowyi.eventlog.demo.entity.Transaction;
-import online.portowyi.eventlog.demo.entity.repository.EventRepository;
+import online.portowyi.eventlog.entity.Event;
+import online.portowyi.eventlog.entity.Transaction;
+import online.portowyi.eventlog.entity.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

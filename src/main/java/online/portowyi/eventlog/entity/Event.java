@@ -1,4 +1,4 @@
-package online.portowyi.eventlog.demo.entity;
+package online.portowyi.eventlog.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
