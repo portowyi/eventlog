@@ -7,11 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class EventService {
@@ -53,10 +49,22 @@ public class EventService {
 
                 if (ev_description.equals(TRANSACTION_BEGIN)) transaction.setTransactionOpenDate(event.getDate());
                 if (ev_description.equals(TRANSACTION_COMMIT)) {
+                    if (tr == null){
+                        Transaction tran = transactionService.findById(transactionId);
+                        if (tran.getTransactionID() != null){
+                            transaction = tran;
+                        }
+                    }
                     transaction.setTransactionFinished(true);
                     transaction.setTransactionCommitDate(event.getDate());
                 }
                 if (ev_description.equals(TRANSACTION_ROLLBACK)) {
+                    if (tr == null){
+                        Transaction tran = transactionService.findById(transactionId);
+                        if (tran.getTransactionID() != null){
+                            transaction = tran;
+                        }
+                    }
                     transaction.setTransactionFinished(true);
                     transaction.setTransactionRollbackDate(event.getDate());
                 }
