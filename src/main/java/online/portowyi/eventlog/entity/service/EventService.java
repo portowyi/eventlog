@@ -76,10 +76,13 @@ public class EventService {
                     Long seconds = Duration.between(transaction.getTransactionOpenDate(), transaction.getTransactionRollbackDate()).getSeconds();
                     transaction.setTransactionDuration(seconds);
                 }
+
+                transaction.setUserName(event.getUserName());
                 transactionsMap.put(hash, transaction);
             }
         }
         List<Transaction> transactions = new ArrayList<Transaction>(transactionsMap.values());
         transactionService.saveAll(transactions);
     }
+
 }

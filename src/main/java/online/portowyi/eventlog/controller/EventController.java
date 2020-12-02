@@ -1,14 +1,13 @@
 package online.portowyi.eventlog.controller;
 
 import online.portowyi.eventlog.entity.Event;
+import online.portowyi.eventlog.entity.Transaction;
 import online.portowyi.eventlog.entity.service.EventService;
+import online.portowyi.eventlog.entity.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +16,12 @@ import java.util.List;
 public class EventController {
 
     private EventService eventService;
+    private TransactionService transactionService;
+
+    @Autowired
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
     @Autowired
     public void setEventService(EventService eventService) {
@@ -32,4 +37,10 @@ public class EventController {
             return new ResponseEntity<String>(ex.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping ("/long")
+    List<Transaction> getLongTransactions(){
+        return transactionService.getLongTransactions();
+    }
+
 }

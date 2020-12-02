@@ -1,5 +1,6 @@
 package online.portowyi.eventlog.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
@@ -9,7 +10,9 @@ import java.util.Objects;
 public class Transaction {
 
     @Id
+    @Column(name = "TRANSACTION_ID")
     private String transactionID;
+    private String userName;
     private boolean transactionFinished;
     private LocalDateTime transactionOpenDate;
     private LocalDateTime transactionCommitDate;
@@ -67,5 +70,13 @@ public class Transaction {
 
     public void setTransactionDuration(Long transactionDuration) {
         this.transactionDuration = transactionDuration;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

@@ -3,6 +3,7 @@ package online.portowyi.eventlog.entity.service;
 import online.portowyi.eventlog.entity.Transaction;
 import online.portowyi.eventlog.entity.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.Optional;
 public class TransactionService {
 
     private TransactionRepository transactionRepository;
+
+    @Value("${longTransactionsDuration}")
+    private Long longTransactionsDuration;
 
     @Autowired
     public void setActiveTransactionRepository(TransactionRepository transactionRepository) {
@@ -29,6 +33,10 @@ public class TransactionService {
 
     public void saveAll(List<Transaction> transactions){
         transactionRepository.saveAll(transactions);
+    }
+
+    public List<Transaction> getLongTransactions(){
+        return transactionRepository.getTransactionsByTransactionDurationGreaterThan(longTransactionsDuration);
     }
 
 }
